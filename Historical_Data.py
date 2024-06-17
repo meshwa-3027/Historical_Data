@@ -14,16 +14,14 @@ x = alice.get_historical(instrument, from_datetime, to_datetime, interval, indic
 y = pd.DataFrame(x) 
 print(y)
 
-#########################################################################################################
-### Store data in Excel ###
+############################## STORE DATA INTO EXCEL ################################
 
 
 y.to_excel("historical_data.xlsx",index=False)
 print("Data Stored")
 
 
-########################################################################################################
-
+############################# RESAMPLE USING EXCHANGE TIME ##########################
 
 # Set the 'exchange_time_stamp' column as the index of the DataFrame
 y['exchange_time_stamp'] = pd.to_datetime(y['datetime'])
