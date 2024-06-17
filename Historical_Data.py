@@ -39,8 +39,8 @@ resampled_data = df.resample('15T').agg({
 
 # Reset the index to make 'exchange_time_stamp' a regular column
 resampled_data.reset_index(inplace=True)
-
 print(resampled_data)
 
+############## Resampled Data Stored Into Excel #############
 resampled_data.to_excel("resampled_data.xlsx",index = False)
 print(" Resample Data stored")
