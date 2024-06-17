@@ -11,25 +11,25 @@ to_datetime = datetime(2024,5,31,15,30,0)    # To now
 interval = "1"       # ["1", "D"] 
 indices = True      # For Getting index data
 x = alice.get_historical(instrument, from_datetime, to_datetime, interval, indices)
-y = pd.DataFrame(x) 
-print(y)
+df = pd.DataFrame(x) 
+print(df)
 
 ############################## STORE DATA INTO EXCEL ################################
 
 
-y.to_excel("historical_data.xlsx",index=False)
+df.to_excel("historical_data.xlsx",index=False)
 print("Data Stored")
 
 
 ############################# RESAMPLE USING EXCHANGE TIME ##########################
 
 # Set the 'exchange_time_stamp' column as the index of the DataFrame
-y['exchange_time_stamp'] = pd.to_datetime(y['datetime'])
+df['exchange_time_stamp'] = pd.to_datetime(df['datetime'])
 
-y.set_index('exchange_time_stamp', inplace=True)
+df.set_index('exchange_time_stamp', inplace=True)
 
 # Resample the DataFrame for a 5-minute interval
-resampled_data = y.resample('15T').agg({
+resampled_data = df.resample('15T').agg({
     'open': 'first',
     'high': 'max',
     'low': 'min',
