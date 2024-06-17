@@ -10,8 +10,8 @@ from_datetime = datetime(2024,5,1,9,15,0)    # From last & days (yyyy,m,d,H,M,S)
 to_datetime = datetime(2024,5,31,15,30,0)    # To now
 interval = "1"       # ["1", "D"] 
 indices = True      # For Getting index data
-x = alice.get_historical(instrument, from_datetime, to_datetime, interval, indices)
-df = pd.DataFrame(x) 
+his_data = alice.get_historical(instrument, from_datetime, to_datetime, interval, indices)
+df = pd.DataFrame(his_data) 
 print(df)
 
 ############################## STORE DATA INTO EXCEL ################################
